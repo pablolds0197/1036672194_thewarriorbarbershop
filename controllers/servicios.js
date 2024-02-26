@@ -10,7 +10,7 @@ const serviciosGet = async (req, res) => {
         res.json({ servicios });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        res.status(500).json({ error: 'Error interno del servidor...' });
     }
 };
 

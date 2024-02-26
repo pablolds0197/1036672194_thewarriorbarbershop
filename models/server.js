@@ -3,12 +3,12 @@ const cors = require('cors');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const http = require('http');
-
 class Server {
     constructor(){
         this.app = express();
         this.port = process.env.PORT;
-        this.comprasPath = '/api/servicios';
+        this.serviciosPath = '/api/servicios';
+        this.rolesPath = '/api/roles';
         //Midelewars
         this.middlewares();
         //Ruras aplicacion
@@ -25,7 +25,8 @@ class Server {
         this.app.use(bodyParser.urlencoded({ extended: false}));
     }
     routes(){
-       this.app.use(this.comprasPath, require('../routes/servicios'));
+        this.app.use(this.serviciosPath, require('../routes/servicios'));
+        this.app.use(this.rolesPath, require('../routes/roles'));
     }
     listen(){
         this.app.listen(this.port, ()=>{
@@ -33,5 +34,4 @@ class Server {
         });   
     }
 }
-
 module.exports = Server
