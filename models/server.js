@@ -5,13 +5,14 @@ const bodyParser = require('body-parser');
 const http = require('http');
 class Server {
     constructor(){
-        this.app = express();
+        this.app = express();   
         this.port = process.env.PORT;
         this.serviciosPath = '/api/servicios';
         this.rolesPath = '/api/roles';
         this.permisosPath = '/api/permisos';
         this.rolesxpermisosPath = '/api/rolesxpermisos';
         this.usuariosPath = '/api/usuarios';
+        this.gestionproductosPath = '/api/gestionproductos';
         //Midelewars
         this.middlewares();
         //Ruras aplicacion
@@ -32,6 +33,7 @@ class Server {
         this.app.use(this.rolesPath, require('../routes/roles'));
         this.app.use(this.rolesxpermisosPath, require('../routes/rolesxpermisos'));
         this.app.use(this.usuariosPath, require('../routes/usuarios'));
+        this.app.use(this.gestionproductosPath, require('../routes/gestionproductos'));
     }
     listen(){
         this.app.listen(this.port, ()=>{
