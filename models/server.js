@@ -31,6 +31,7 @@ class Server {
     routes(){
         this.app.use(this.serviciosPath, require('../routes/servicios'));
         this.app.use(this.rolesPath, require('../routes/roles'));
+        this.app.use(this.permisosPath, require('../routes/permisos'));
         this.app.use(this.rolesxpermisosPath, require('../routes/rolesxpermisos'));
         this.app.use(this.usuariosPath, require('../routes/usuarios'));
         this.app.use(this.gestionproductosPath, require('../routes/gestionproductos'));
