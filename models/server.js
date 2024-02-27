@@ -11,6 +11,7 @@ class Server {
         this.rolesPath = '/api/roles';
         this.permisosPath = '/api/permisos';
         this.rolesxpermisosPath = '/api/rolesxpermisos';
+        this.usuariosPath = '/api/usuarios';
         //Midelewars
         this.middlewares();
         //Ruras aplicacion
@@ -30,6 +31,7 @@ class Server {
         this.app.use(this.serviciosPath, require('../routes/servicios'));
         this.app.use(this.rolesPath, require('../routes/roles'));
         this.app.use(this.rolesxpermisosPath, require('../routes/rolesxpermisos'));
+        this.app.use(this.usuariosPath, require('../routes/usuarios'));
     }
     listen(){
         this.app.listen(this.port, ()=>{

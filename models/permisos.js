@@ -23,7 +23,7 @@ Permiso.init({
 },{
     sequelize: db,
     modelName: 'Permisos',
-    tableName: 'Permisos',
+    tableName: 'permisos',
     timestamps: true
 });
 

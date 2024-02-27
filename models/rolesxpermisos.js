@@ -30,7 +30,7 @@ Rolesxpermisos.init({
 },{
     sequelize: db,
     modelName: 'Rolesxpermisos',
-    tableName: 'Rolesxpermisos',
+    tableName: 'rolesxpermisos',
     timestamps: true
 });
 
