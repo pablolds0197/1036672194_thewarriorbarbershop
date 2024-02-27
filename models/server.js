@@ -9,6 +9,7 @@ class Server {
         this.port = process.env.PORT;
         this.serviciosPath = '/api/servicios';
         this.rolesPath = '/api/roles';
+        this.permisosPath = '/api/permisos';
         //Midelewars
         this.middlewares();
         //Ruras aplicacion
@@ -27,6 +28,7 @@ class Server {
     routes(){
         this.app.use(this.serviciosPath, require('../routes/servicios'));
         this.app.use(this.rolesPath, require('../routes/roles'));
+        this.app.use(this.permisosPath, require('../routes/permisos'));
     }
     listen(){
         this.app.listen(this.port, ()=>{

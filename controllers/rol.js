@@ -53,10 +53,10 @@ const rolesPut = async(req, res = response)=>{
                     idRol: idRol
                 }
             }
-        ) : mensaje = 'No existe el servicio para ser modificado...'
+        ) : mensaje = 'No existe el rol para ser modificado...'
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al modificar el servicio...'
+        mensaje = 'Se presentaron problemas al modificar el rol...'
     }
     res.json({
         msg: mensaje
@@ -70,10 +70,10 @@ const rolesDelete = async(req, res)=> {
     let mensaje = 'Rol eliminado exitosamente...'
 
     try{
-        const servicio = await Rol.destroy({ where: { idRol: idRol } });
+        const rol = await Rol.destroy({ where: { idRol: idRol } });
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al eliminar el serivicio...'+ req.params.idRol
+        mensaje = 'Se presentaron problemas al eliminar el rol...'+ req.params.idRol
     }
 
     res.json({
