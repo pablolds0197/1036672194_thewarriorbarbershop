@@ -1,12 +1,12 @@
 
-const Rolesxpermiso = require('../models/rolesxpermisos');
+const Rolesxpermisos = require('../models/rolesxpermisos');
 
 
 const { response , request} = require('express');
 
 const rolesxpermisosGet = async (req, res) => {
     try {
-        const rolesxpermisos = await Rolesxpermiso.findAll();
+        const rolesxpermisos = await Rolesxpermisos.findAll();
         res.json({ rolesxpermisos });
     } catch (error) {
         console.error(error);
@@ -15,10 +15,10 @@ const rolesxpermisosGet = async (req, res) => {
 };
 
 const rolesxpermisosPost = async (req, res = response)=>{
-    let mensaje = 'Rolesxpermiso registrado extosamente...'
+    let mensaje = 'roles por permisos registrados extosamente...'
     const body = req.body
         try {
-            const rolesxpermisos = new Rolesxpermiso(body)
+            const rolesxpermisos = new Rolesxpermisos(body)
             rolesxpermisos.save()
         } catch (error) {
             mensaje = error
@@ -31,27 +31,27 @@ const rolesxpermisosPost = async (req, res = response)=>{
 
 const rolesxpermisosPut = async(req, res = response)=>{
 
-    const {IdRolesxpermiso, IdRol,  IdPermiso } = req.body
+    const {IdRolesxpermisos, IdRol,  IdPermiso } = req.body
     let mensaje = 'Modificación exitosa...'
     try{
 
-        const find = await Rolesxpermiso.findByPk(IdRolesxpermiso);
+        const find = await Rolesxpermisos.findByPk(IdRolesxpermisos);
         console.log(find);
         find != null ? 
-        await Rolesxpermiso.update(
+        await Rolesxpermisos.update(
             {
                 IdRol: IdRol,
                 IdPermiso: IdPermiso,
             },
             {
                 where: {
-                    IdRolesxpermiso: IdRolesxpermiso
+                    IdRolesxpermisos: IdRolesxpermisos
                 }
             }
-        ) : mensaje = 'No existe el rolesxpermiso para ser modificado...'
+        ) : mensaje = 'No existen los roles por permisos para ser modificados...'
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al modificar el rolesxpermiso...'
+        mensaje = 'Se presentaron problemas al modificar los roles por permisos...'
     }
     res.json({
         msg: mensaje
@@ -61,14 +61,14 @@ const rolesxpermisosPut = async(req, res = response)=>{
 
 
 const rolesxpermisosDelete = async(req, res)=> {
-    const {IdRolesxpermiso} = req.body
-    let mensaje = 'Rolesxpermiso eliminado exitosamente...'
+    const {IdRolesxpermisos} = req.body
+    let mensaje = 'roles por permisos eliminados exitosamente...'
 
     try{
-        const rolesxpermisos = await Rolesxpermiso.destroy({ where: { IdRolesxpermiso: IdRolesxpermiso } });
+        const rolesxpermisos = await Rolesxpermisos.destroy({ where: { IdRolesxpermisos: IdRolesxpermisos } });
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al eliminar el rolesxpermiso...'+ req.params.IdRolesxpermiso
+        mensaje = 'Se presentaron problemas al eliminar los roles por permisos...'+ req.params.IdRolesxpermisos
     }
 
     res.json({

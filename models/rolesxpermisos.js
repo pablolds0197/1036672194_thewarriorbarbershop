@@ -3,10 +3,10 @@ const { Sequelize, DataTypes } = require('sequelize');
 const Roles = require('./rol');
 const Permisos = require('./permisos');
 
-class Rolesxpermiso extends Sequelize.Model {};
+class Rolesxpermisos extends Sequelize.Model {};
 
-Rolesxpermiso.init({
-  IdRolesxpermiso: {
+Rolesxpermisos.init({
+  IdRolesxpermisos: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
@@ -34,4 +34,4 @@ Rolesxpermiso.init({
     timestamps: true
 });
 
-module.exports = Rolesxpermiso;
+module.exports = Rolesxpermisos;
