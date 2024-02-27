@@ -4,7 +4,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 class Rol extends Sequelize.Model {};
 
 Rol.init({
-  idRol: {
+  IdRol: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,

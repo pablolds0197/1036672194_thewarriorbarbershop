@@ -4,7 +4,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 class Permiso extends Sequelize.Model {};
 
 Permiso.init({
-  idPermiso: {
+  IdPermiso: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,

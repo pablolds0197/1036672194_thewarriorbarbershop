@@ -4,7 +4,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 class Servicios extends Sequelize.Model {};
 
 Servicios.init({
-  idServicio: {
+  IdServicio: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
