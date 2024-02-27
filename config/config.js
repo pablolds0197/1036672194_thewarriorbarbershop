@@ -4,7 +4,7 @@ const db = new Sequelize({
     dialect: 'mysql',
     host: '127.0.0.1',
     username: 'root',
-    password: '',
+    password: '123',
     database: 'twbs',
     logging: false,
     define: {
