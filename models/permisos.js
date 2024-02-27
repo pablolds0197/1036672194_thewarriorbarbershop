@@ -1,17 +1,17 @@
 const db = require('../config/config');
 const { Sequelize, DataTypes } = require('sequelize'); 
 
-class Servicios extends Sequelize.Model {};
+class Permiso extends Sequelize.Model {};
 
-Servicios.init({
-  IdServicio: {
+Permiso.init({
+  IdPermiso: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     unique: true,
     type: DataTypes.INTEGER
   },
-  NombreDelServicio: {
+  NombreDelPermiso: {
     allowNull: false,
     type: DataTypes.STRING,
     unique: true
@@ -20,20 +20,11 @@ Servicios.init({
     allowNull: false,
     type: DataTypes.STRING
   },
-  Comision: {
-    allowNull: false,
-    type: DataTypes.INTEGER
-  },
-  Precio: {
-    allowNull: false,
-    type: DataTypes.INTEGER
-  },
 },{
     sequelize: db,
-    modelName: 'Servicios',
-    tableName: 'servicios',
+    modelName: 'Permisos',
+    tableName: 'permisos',
     timestamps: true
 });
 
-module.exports = Servicios;
-    
+module.exports = Permiso;

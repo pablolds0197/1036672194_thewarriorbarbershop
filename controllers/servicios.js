@@ -10,7 +10,7 @@ const serviciosGet = async (req, res) => {
         res.json({ servicios });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        res.status(500).json({ error: 'Error interno del servidor...' });
     }
 };
 
@@ -70,7 +70,7 @@ const serviciosDelete = async(req, res)=> {
         const servicio = await Servicio.destroy({ where: { idServicio: idServicio } });
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al eliminar el serivicio...'+ req.params.idServicio
+        mensaje = 'Se presentaron problemas al eliminar el servicio...'+ req.params.idServicio
     }
 
     res.json({
