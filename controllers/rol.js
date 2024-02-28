@@ -36,11 +36,11 @@ const rolesPost = async (req, res = response)=>{
 
 const rolesPut = async(req, res = response)=>{
 
-    const {idRol, NombreDelRol,  Estado } = req.body
+    const {IdRol, NombreDelRol,  Estado } = req.body
     let mensaje = 'Modificación exitosa'
     try{
 
-        const find = await Rol.findByPk(idRol);
+        const find = await Rol.findByPk(IdRol);
         console.log(find);
         find != null ? 
         await Rol.update(
@@ -50,7 +50,7 @@ const rolesPut = async(req, res = response)=>{
             },
             {
                 where: {
-                    idRol: idRol
+                    IdRol: IdRol
                 }
             }
         ) : mensaje = 'No existe el rol para ser modificado...'
@@ -66,14 +66,14 @@ const rolesPut = async(req, res = response)=>{
 
 
 const rolesDelete = async(req, res)=> {
-    const {idRol} = req.body
+    const {IdRol} = req.body
     let mensaje = 'Rol eliminado exitosamente...'
 
     try{
-        const rol = await Rol.destroy({ where: { idRol: idRol } });
+        const rol = await Rol.destroy({ where: { IdRol: IdRol } });
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al eliminar el rol...'+ req.params.idRol
+        mensaje = 'Se presentaron problemas al eliminar el rol...'+ req.params.IdRol
     }
 
     res.json({

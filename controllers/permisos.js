@@ -31,11 +31,11 @@ const permisosPost = async (req, res = response)=>{
 
 const permisosPut = async(req, res = response)=>{
 
-    const {idPermiso, NombreDelPermiso,  Descripcion } = req.body
+    const {IdPermiso, NombreDelPermiso,  Descripcion } = req.body
     let mensaje = 'Modificación exitosa'
     try{
 
-        const find = await Permiso.findByPk(idPermiso);
+        const find = await Permiso.findByPk(IdPermiso);
         console.log(find);
         find != null ? 
         await Permiso.update(
@@ -45,7 +45,7 @@ const permisosPut = async(req, res = response)=>{
             },
             {
                 where: {
-                    idPermiso: idPermiso
+                    IdPermiso: IdPermiso
                 }
             }
         ) : mensaje = 'No existe el permiso para ser modificado...'
@@ -61,14 +61,14 @@ const permisosPut = async(req, res = response)=>{
 
 
 const permisosDelete = async(req, res)=> {
-    const {idPermiso} = req.body
+    const {IdPermiso} = req.body
     let mensaje = 'Permiso eliminado exitosamente...'
 
     try{
-        const permisos = await Permiso.destroy({ where: { idPermiso: idPermiso } });
+        const permisos = await Permiso.destroy({ where: { IdPermiso: IdPermiso } });
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al eliminar el permiso...'+ req.params.idPermiso
+        mensaje = 'Se presentaron problemas al eliminar el permiso...'+ req.params.IdPermiso
     }
 
     res.json({
