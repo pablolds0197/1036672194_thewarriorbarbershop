@@ -31,11 +31,11 @@ const serviciosPost = (req, res = response)=>{
 
 const serviciosPut = async(req, res = response)=>{
 
-    const {idServicio, NombreDelServicio,  Descripcion,  Comision, Precio } = req.body
+    const {IdServicio, NombreDelServicio,  Descripcion,  Comision, Precio } = req.body
     let mensaje = 'Modificación exitosa'
     try{
 
-        const find = await Servicio.findByPk(idServicio);
+        const find = await Servicio.findByPk(IdServicio);
         console.log(find);
         find != null ? 
         await Servicio.update(
@@ -47,7 +47,7 @@ const serviciosPut = async(req, res = response)=>{
             },
             {
                 where: {
-                    idServicio: idServicio
+                    IdServicio: IdServicio
                 }
             }
         ) : mensaje = 'No existe el servicio para ser modificado...'
@@ -63,14 +63,14 @@ const serviciosPut = async(req, res = response)=>{
 
 
 const serviciosDelete = async(req, res)=> {
-    const {idServicio} = req.body
+    const {IdServicio} = req.body
     let mensaje = 'Servicio eliminado exitosamente...'
 
     try{
-        const servicio = await Servicio.destroy({ where: { idServicio: idServicio } });
+        const servicio = await Servicio.destroy({ where: { IdServicio: IdServicio } });
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al eliminar el servicio...'+ req.params.idServicio
+        mensaje = 'Se presentaron problemas al eliminar el servicio...'+ req.params.IdServicio
     }
 
     res.json({
