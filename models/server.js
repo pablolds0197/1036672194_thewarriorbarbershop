@@ -23,6 +23,7 @@ class Server {
         this.ventasxserviciosPath = '/api/ventasxservicios';
         this.ventasxproductosPath = '/api/ventasxproductos';
         this.detalleAgendaServicioPath = '/api/detalleAgendaServicio';
+        this.comprasPath = '/api/compras';
 
         //Midelewars
         this.middlewares();
@@ -56,6 +57,7 @@ class Server {
         this.app.use(this.ventasxserviciosPath, require('../routes/ventasxservicios'));
         this.app.use(this.ventasxproductosPath, require('../routes/ventasxproductos'));
         this.app.use(this.detalleAgendaServicioPath, require('../routes/detalleAgendaServicio'));
+        this.app.use(this.comprasPath, require('../routes/compras'));
     }
     listen(){
         this.app.listen(this.port, ()=>{

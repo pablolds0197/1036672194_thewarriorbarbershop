@@ -1,11 +1,12 @@
-const compras = require('../models/compras');
+
+const Compras = require('../models/compras');
 
 
 const { response , request} = require('express');
 
 const comprasGet = async (req, res) => {
     try {
-        const compras = await compras.findAll();
+        const compras = await Compras.findAll();
         res.json({ compras });
     } catch (error) {
         console.error(error);
@@ -14,10 +15,10 @@ const comprasGet = async (req, res) => {
 };
 
 const comprasPost = (req, res = response)=>{
-    let mensaje = 'Compra registrado extosamente...'
+    let mensaje = 'Compra registrada extosamente...'
     const body = req.body
     try {
-        const compras = new compras(body) 
+        const compras = new Compras(body) 
         compras.save()
     } catch (error) {
         mensaje = error
@@ -30,14 +31,14 @@ const comprasPost = (req, res = response)=>{
 
 const comprasPut = async(req, res = response)=>{
 
-    const {IdCompra, IdProveedor, FechaCompra, Total } = req.body
+    const {IdCompra, IdProveedor,FechaCompra,Total } = req.body
     let mensaje = 'Modificación exitosa'
     try{
 
-        const find = await compras.findByPk(IdCompra);
+        const find = await Compras.findByPk(IdCompra);
         console.log(find);
         find != null ? 
-        await compras.update(
+        await Compras.update(
             {
                 IdProveedor: IdProveedor,
                 FechaCompra: FechaCompra,
@@ -48,7 +49,7 @@ const comprasPut = async(req, res = response)=>{
                     IdCompra: IdCompra
                 }
             }
-        ) : mensaje = 'No existe una compra para ser modificada...'
+        ) : mensaje = 'No existe la compra para ser modificada...'
     }
     catch(error){
         mensaje = 'Se presentaron problemas al modificar la compra...'
@@ -65,7 +66,7 @@ const comprasDelete = async(req, res)=> {
     let mensaje = 'compra eliminada exitosamente...'
 
     try{
-        const compras = await compras.destroy({ where: { IdCompra: IdCompra } });
+        const compras = await Compras.destroy({ where: { IdCompra: IdCompra } });
     }
     catch(error){
         mensaje = 'Se presentaron problemas al eliminar la compra...'+ req.params.IdCompra
