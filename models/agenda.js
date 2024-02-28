@@ -29,6 +29,7 @@ Agenda.init({
   },
   FechaHoraAgenda: {
     allowNull: false,
+    unique: true,
     type: DataTypes.DATE
   },
 },{
