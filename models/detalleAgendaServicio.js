@@ -1,11 +1,11 @@
 const db = require('../config/config');
 const { Sequelize, DataTypes } = require('sequelize'); 
-const Agendas = require('./agenda');
+const Agenda = require('./agenda');
 const Servicio = require('./servicios');
 
-class Agenda extends Sequelize.Model {};
+class DetalleAgendaServicio extends Sequelize.Model {};
 
-Agenda.init({
+DetalleAgendaServicio.init({
   IdDetalleAgendaServicio: {
     allowNull: false,
     autoIncrement: true,
@@ -16,7 +16,7 @@ Agenda.init({
   IdAgenda: {
     type: DataTypes.INTEGER,
     references: {
-      model: Agendas,
+      model: Agenda,
       key: 'IdAgenda'
     }
   },
@@ -39,5 +39,5 @@ Agenda.init({
     timestamps: true
 });
 
-module.exports = Agenda;
+module.exports = DetalleAgendaServicio;
     
