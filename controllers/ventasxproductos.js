@@ -61,14 +61,14 @@ const ventasxproductosPut = async(req, res = response)=>{
 
 
 const ventasxproductosDelete = async(req, res)=> {
-    const {IdVentasxproductos} = req.body
-    let mensaje = 'roles por permisos eliminados exitosamente...'
+    const {IdDetalleVentaProductos} = req.body
+    let mensaje = 'ventas por productos eliminados exitosamente...'
 
     try{
-        const ventasxproductos = await Ventasxproductos.destroy({ where: { IdVentasxproductos: IdVentasxproductos } });
+        const ventasxproductos = await Ventasxproductos.destroy({ where: { IdDetalleVentaProductos: IdDetalleVentaProductos } });
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al eliminar los roles por permisos...'+ req.params.IdVentasxproductos
+        mensaje = 'Se presentaron problemas al eliminar los ventas por productos...'+ req.params.IdDetalleVentaProductos
     }
 
     res.json({
