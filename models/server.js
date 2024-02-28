@@ -18,6 +18,7 @@ class Server {
         this.gastosoperativosPath = '/api/gastosoperativos';
         this.clientesPath = '/api/clientes';
         this.ventasPath = '/api/ventas';
+        this.agendaPath = '/api/agenda';
 
         //Midelewars
         this.middlewares();
@@ -46,6 +47,7 @@ class Server {
         this.app.use(this.gastosoperativosPath, require('../routes/gastosoperativos'));
         this.app.use(this.clientesPath, require('../routes/clientes'));
         this.app.use(this.ventasPath, require('../routes/ventas'));
+        this.app.use(this.agendaPath, require('../routes/agenda'));
     }
     listen(){
         this.app.listen(this.port, ()=>{
