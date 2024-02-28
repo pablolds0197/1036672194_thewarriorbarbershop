@@ -16,6 +16,9 @@ class Server {
         this.conceptogastoPath = '/api/conceptogasto';
         this.empleadosPath = '/api/empleados';
         this.gastosoperativosPath = '/api/gastosoperativos';
+        this.clientesPath = '/api/clientes';
+        this.ventasPath = '/api/ventas';
+
         //Midelewars
         this.middlewares();
         //Ruras aplicacion
@@ -41,6 +44,8 @@ class Server {
         this.app.use(this.conceptogastoPath, require('../routes/conceptogasto'));
         this.app.use(this.empleadosPath, require('../routes/empleados'));
         this.app.use(this.gastosoperativosPath, require('../routes/gastosoperativos'));
+        this.app.use(this.clientesPath, require('../routes/clientes'));
+        this.app.use(this.ventasPath, require('../routes/ventas'));
     }
     listen(){
         this.app.listen(this.port, ()=>{
