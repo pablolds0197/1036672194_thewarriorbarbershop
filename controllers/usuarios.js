@@ -15,7 +15,7 @@ const usuariosGet = async (req, res) => {
 };
 
 const usuariosPost = async (req, res = response)=>{
-    let mensaje = 'Usuarios registrado extosamente...'
+    let mensaje = 'Usuario registrado extosamente...'
     const body = req.body
 
     const valEm = /^[a-zA-Z0-9]+@[a-zA-Z]{4,8}\.[a-zA-Z]{2,4}$/;
@@ -48,9 +48,21 @@ const usuariosPost = async (req, res = response)=>{
         return res.status(400).json({
             mensaje: "El apellido no puede estar vacío!",
         });
+    }  else if (!body.Celular) {
+        return res.status(400).json({
+            mensaje: "El número de celular no puede estar vacío!",
+        });
+    } else if (existeCelular) {
+        return res.status(400).json({
+            mensaje: "Ese número de celular ya está en uso!",
+        });
     } else if (!body.Correo) {
         return res.status(400).json({
             mensaje: "El correo no puede estar vacío!",
+        });
+    } else if (existeCorreo) {
+        return res.status(400).json({
+            mensaje: "Ese correo ya está en uso!",
         });
     } else if (body.Correo != body.Correo.match(valEm) && body.Pass != body.Pass.match(valPa)) {
         return res.status(400).json({
@@ -60,17 +72,13 @@ const usuariosPost = async (req, res = response)=>{
         return res.status(400).json({
             mensaje: "El correo es inválido!",
         });
-    } else if (body.Pass != body.Pass.match(valPa)) {
-        return res.status(400).json({
-            mensaje: "La contraseña es inválida!",
-        });
-    }  else if (!body.Celular) {
-        return res.status(400).json({
-          mensaje: "El número de celular no puede estar vacío!",
-        });
     } else if (!body.Pass) {
         return res.status(400).json({
             mensaje: "La contraseña no puede estar vacía!",
+        });
+    } else if (body.Pass != body.Pass.match(valPa)) {
+        return res.status(400).json({
+            mensaje: "La contraseña es inválida!",
         });
     } else {
         try {
