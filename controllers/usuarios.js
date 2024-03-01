@@ -119,6 +119,10 @@ const usuariosPut = async (req, res = response)=>{
             mensaje: "El usuario no puede estar vacío!",
         });
     } else if (existeUsuario) {
+        // if (Usuario == existeUsuario) {
+        //     existeUsuario.Usuario = Usuario
+        //     usuarioExiste.rol = rol !== undefined ? rol : usuarioExiste.rol;
+        // }
         return res.status(400).json({
             mensaje: "Ese usuario ya existe!",
         });
