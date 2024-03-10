@@ -25,9 +25,13 @@ const agendaPost = async (req, res = response)=>{
         return res.status(400).json({
           mensaje: "El id de cliente no puede estar vacío",
         });
-      } else if (!body.FechaHoraAgenda) {
+      } else if (!body.FechaAgenda) {
         return res.status(400).json({
           mensaje: "Debe seleccionar una fecha!",
+        });
+      } else if (!body.HoraAgenda) {
+        return res.status(400).json({
+          mensaje: "Debe seleccionar una hora!",
         });
       } else {
         try {
@@ -45,20 +49,24 @@ const agendaPost = async (req, res = response)=>{
 
 const agendaPut = async(req, res = response)=>{
 
-    const {IdAgenda, IdEmpleado,  IdCliente, FechaHoraAgenda } = req.body
+    const {IdAgenda, IdEmpleado,  IdCliente, FechaAgenda, HoraAgenda } = req.body
     let mensaje = 'Modificación exitosa'
     
-    if (!body.IdEmpleado) {
+    if (!IdEmpleado) {
         return res.status(400).json({
           mensaje: "Debe seleccionar un barbero!",
         });
-      } else if (!body.IdCliente) {
+      } else if (!IdCliente) {
         return res.status(400).json({
           mensaje: "Debe seleccionar un cliente!",
         });
-      } else if (!body.FechaHoraAgenda) {
+      } else if (!FechaAgenda) {
         return res.status(400).json({
           mensaje: "Debe seleccionar una fecha!",
+        });
+      } else if (!HoraAgenda) {
+        return res.status(400).json({
+          mensaje: "Debe seleccionar una hora!",
         });
       } else {
         try{
@@ -69,7 +77,8 @@ const agendaPut = async(req, res = response)=>{
                 {
                     IdEmpleado: IdEmpleado,
                     IdCliente: IdCliente,
-                    FechaHoraAgenda: FechaHoraAgenda
+                    FechaAgenda: FechaAgenda,
+                    HoraAgenda: HoraAgenda
                 },
                 {
                     where: {
