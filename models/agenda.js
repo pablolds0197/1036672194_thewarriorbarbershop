@@ -27,10 +27,14 @@ Agenda.init({
       key: 'IdEmpleado'
     }
   },
-  FechaHoraAgenda: {
+  FechaAgenda: {
+    allowNull: false,
+    type: DataTypes.DATE
+  },
+  HoraAgenda: {
     allowNull: false,
     unique: true,
-    type: DataTypes.DATE
+    type: DataTypes.TIME
   },
 },{
     sequelize: db,
