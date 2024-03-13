@@ -5,7 +5,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 class Proveedores extends Sequelize.Model {};
 
 Proveedores.init({
-    IdProveedores: {
+    IdProveedor: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
