@@ -13,14 +13,14 @@ Ventasxproductos.init({
     unique: true,
     type: DataTypes.INTEGER
   },
-  IdRol: {
+  IdVenta: {
     type: DataTypes.INTEGER,
     references: {
       model: Ventas,
       key: 'IdVenta'
     }
   },
-  IdPermiso: {
+  IdProducto: {
     type: DataTypes.INTEGER,
     references: {
       model: Productos,
@@ -29,8 +29,8 @@ Ventasxproductos.init({
   }
 },{
     sequelize: db,
-    modelName: 'Ventasxproductos',
-    tableName: 'ventasxproductos',
+    modelName: 'DetalleVentaProductos',
+    tableName: 'DetalleVentaProductos',
     timestamps: true
 });
 
