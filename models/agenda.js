@@ -16,14 +16,14 @@ Agenda.init({
   IdEmpleado: {
     type: DataTypes.INTEGER,
     references: {
-      model: Clientes,
+      model: Empleados,
       key: 'IdEmpleado'
     }
   },
   IdCliente: {
     type: DataTypes.INTEGER,
     references: {
-      model: Empleados,
+      model: Clientes,
       key: 'IdCliente'
     }
   },
