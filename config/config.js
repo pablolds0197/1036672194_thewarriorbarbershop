@@ -16,6 +16,4 @@ const db = new Sequelize({
     },
 });
 
-// connectionString: process.env.DB_URL
-
 module.exports = db;
