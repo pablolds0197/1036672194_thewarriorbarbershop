@@ -30,14 +30,14 @@ const proveedoresPost = (req, res = response)=>{
 
 const proveedoresPut = async(req, res = response)=>{
 
-    const {IdProveedores, NombreProveedor, NombreContacto,  Telefono, Correo } = req.body
+    const {IdProveedor, NombreProveedor, NombreContacto,  Telefono, Correo } = req.body
     let mensaje = 'Modificación exitosa'
     try{
 
-        const find = await Proveedores.findByPk(IdProveedores);
+        const find = await Proveedores.findByPk(IdProveedor);
         console.log(find);
         find != null ? 
-        await proveedores.update(
+        await Proveedores.update(
             {
                 NombreProveedor: NombreProveedor,
                 NombreContacto: NombreContacto,
@@ -46,7 +46,7 @@ const proveedoresPut = async(req, res = response)=>{
             },
             {
                 where: {
-                    IdProveedores: IdProveedores
+                    IdProveedor: IdProveedor
                 }
             }
         ) : mensaje = 'No existe el proveedores para ser modificado...'
@@ -59,17 +59,15 @@ const proveedoresPut = async(req, res = response)=>{
     })
 }
 
-
-
 const proveedoresDelete = async(req, res)=> {
-    const {IdProveedores} = req.body
+    const {IdProveedor} = req.body
     let mensaje = 'proveedor eliminado exitosamente...'
 
     try{
-        const proveedor = await Proveedores.destroy({ where: { IdProveedores: IdProveedores } });
+        const proveedor = await Proveedores.destroy({ where: { IdProveedor: IdProveedor } });
     }
     catch(error){
-        mensaje = 'Se presentaron problemas al eliminar el proveedor...'+ req.params.IdProveedores
+        mensaje = 'Se presentaron problemas al eliminar el proveedor...'+ req.params.IdProveedor
     }
 
     res.json({
