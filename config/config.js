@@ -1,5 +1,4 @@
 const { Sequelize }= require('sequelize');
-
 const db = new Sequelize({
     dialect: 'mysql',
     host: '127.0.0.1',
@@ -10,7 +9,10 @@ const db = new Sequelize({
     logging: false,
     define: {
         timestamps: true
-    }
+    },
+    dialectOptions: {
+        connectTimeout: 300000,
+    },
 });
 
 module.exports = db;
