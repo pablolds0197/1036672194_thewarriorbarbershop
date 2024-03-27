@@ -12,6 +12,23 @@ const usuariosGet = async (req, res) => {
   }
 };
 
+const NombreusuarioGet = async (req, res) => {
+  try {
+    const { Usuario } = req.params;
+    const usuario = await Usuarios.findOne({
+      where: { Usuario: Usuario },
+    });
+    if (usuario) {
+      res.json({ usuario });
+    } else {
+      res.status(404).json({ error: "Usuario no encontrado" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error interno del servidor..." });
+  }
+};
+
 const usuariosPost = async (req, res = response) => {
   let mensaje = "Usuario registrado extosamente...";
   const body = req.body;
@@ -255,6 +272,7 @@ const usuariosDelete = async (req, res) => {
 
 module.exports = {
   usuariosGet,
+  NombreusuarioGet,
   usuariosPut,
   usuariosPost,
   usuariosDelete,

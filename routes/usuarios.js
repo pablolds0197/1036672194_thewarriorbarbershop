@@ -1,6 +1,7 @@
 const { Router} = require('express');
 
 const { usuariosGet,
+        NombreusuarioGet,
         usuariosPut,
         usuariosPost,
         usuariosDelete } = require('../controllers/usuarios');
@@ -8,6 +9,8 @@ const { usuariosGet,
 const router = Router();
 
 router.get('/', usuariosGet);
+
+router.get('/:Usuario', NombreusuarioGet);
 
 router.put('/', usuariosPut);
 
