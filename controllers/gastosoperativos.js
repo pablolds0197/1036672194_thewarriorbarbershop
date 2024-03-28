@@ -14,7 +14,7 @@ const gastosoperativosGet = async (req, res) => {
 };
 
 const gastosoperativosPost = (req, res = response)=>{
-    let mensaje = 'gasto Op registrado extosamente...'
+    let mensaje = 'gasto operativo registrado extosamente...'
     const body = req.body
     try {
         const gastosoperativos = new GastosOperativos(body) 
