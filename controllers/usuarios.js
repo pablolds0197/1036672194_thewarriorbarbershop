@@ -12,7 +12,7 @@ const usuariosGet = async (req, res) => {
   }
 };
 
-const NombreusuarioGet = async (req, res) => {
+const NombreUsuarioGet = async (req, res) => {
   try {
     const { Usuario } = req.params;
     const usuario = await Usuarios.findOne({
@@ -272,7 +272,7 @@ const usuariosDelete = async (req, res) => {
 
 module.exports = {
   usuariosGet,
-  NombreusuarioGet,
+  NombreUsuarioGet,
   usuariosPut,
   usuariosPost,
   usuariosDelete,
