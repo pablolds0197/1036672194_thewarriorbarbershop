@@ -12,6 +12,22 @@ const usuariosGet = async (req, res) => {
   }
 };
 
+const NombreUsuarioGet = async (req, res) => {
+  try {
+    const { Usuario } = req.params;
+    const usuario = await Usuarios.findOne({
+      where: { Usuario: Usuario },
+    });
+    if (usuario) {
+      res.json({ usuario });
+    } else {
+      res.status(404).json({ error: "Usuario no encontrado" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error interno del servidor..." });
+  }
+};
 const usuariosPost = async (req, res = response) => {
   let mensaje = "Usuario registrado extosamente...";
   const body = req.body;
@@ -123,7 +139,7 @@ const usuariosPut = async (req, res = response) => {
   const valEm = /^[a-zA-Z0-9]+@[a-zA-Z]{4,8}\.[a-zA-Z]{2,4}$/;
   const valPa = /^[a-zA-Z0-9]{8,15}$/;
   const valCel = /^[0-9]{10}$/;
-  const existeUsuario = await Usuarios.findOne({ where: { Usuario: Usuario } });
+  const existeUsuario = await Usuarios.findOne({ where: { IdUsuario: IdUsuario } });
 
   if (
     !IdRol &&
@@ -177,10 +193,6 @@ const usuariosPut = async (req, res = response) => {
     return res.status(400).json({
       mensaje: "La contraseña es inválida!",
     });
-  } else if (!existeUsuario) {
-    return res.status(400).json({
-      mensaje: "Ese usuario no existe!",
-    });
   } else {
     try {
       if (Correo !== existeUsuario.Correo) {
@@ -205,7 +217,6 @@ const usuariosPut = async (req, res = response) => {
       }
       //   existeUsuario.Usuario = Usuario !== undefined ? Usuario : existeUsuario.Usuario;
       const find = await Usuarios.findByPk(IdUsuario);
-      console.log(find);
       find != null
         ? await Usuarios.update(
             {
@@ -224,8 +235,6 @@ const usuariosPut = async (req, res = response) => {
             }
           )
         : (mensaje = "No existe el usuario para ser modificado...");
-      const usuarios = new Usuarios(body);
-      usuarios.save();
     } catch (error) {
       mensaje = "Se presentaron problemas al modificar el usuario...";
       console.log(error);
@@ -255,6 +264,7 @@ const usuariosDelete = async (req, res) => {
 
 module.exports = {
   usuariosGet,
+  NombreUsuarioGet,
   usuariosPut,
   usuariosPost,
   usuariosDelete,
