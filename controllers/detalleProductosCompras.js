@@ -31,7 +31,7 @@ const detalleProductosComprasPost = (req, res = response)=>{
 
 const detalleProductosComprasPut = async(req, res = response)=>{
 
-    const {IdDetalleProductosCompras, IdProducto,  IdCompra, CantidadCompra, Subtotal } = req.body
+    const {IdDetalleProductosCompras, IdProducto,  IdCompra, CantidadDisponible, Total } = req.body
     let mensaje = 'Modificación exitosa...'
     try{
         const find = await DetalleProductosCompras.findByPk(IdDetalleProductosCompras);
@@ -41,8 +41,8 @@ const detalleProductosComprasPut = async(req, res = response)=>{
             {
                 IdProducto: IdProducto,
                 IdCompra: IdCompra,
-                CantidadCompra: CantidadCompra,
-                Subtotal: Subtotal
+                CantidadDisponible: CantidadDisponible,
+                Total: Total
             },
             {
                 where: {
