@@ -92,7 +92,6 @@ const agendaPut = async (req, res = response) => {
   } else {
     try {
       const find = await Agenda.findByPk(IdAgenda);
-      console.log(find);
       find != null
         ? await Agenda.update(
             {
