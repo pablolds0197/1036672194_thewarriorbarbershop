@@ -1,4 +1,5 @@
 
+
 const Compras = require('../models/compras');
 
 
@@ -31,7 +32,7 @@ const comprasPost = (req, res = response)=>{
 
 const comprasPut = async(req, res = response)=>{
 
-    const {IdCompra, IdProveedor,FechaCompra,Total } = req.body
+    const {IdCompra, IdProveedor,IdProducto,NumeroFactura,FechaRegistro,SubTotal } = req.body
     let mensaje = 'Modificación exitosa'
     try{
 
@@ -41,8 +42,10 @@ const comprasPut = async(req, res = response)=>{
         await Compras.update(
             {
                 IdProveedor: IdProveedor,
-                FechaCompra: FechaCompra,
-                Total: Total,
+                IdProducto:IdProducto,
+                NumeroFactura:NumeroFactura,
+                FechaRegistro:FechaRegistro,
+                SubTotal: SubTotal,
             },
             {
                 where: {

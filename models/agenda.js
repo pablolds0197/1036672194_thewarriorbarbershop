@@ -2,6 +2,7 @@ const db = require('../config/config');
 const { Sequelize, DataTypes } = require('sequelize'); 
 const Clientes = require('./clientes');
 const Empleados = require('./empleados');
+const Servicios = require('./servicios');
 
 class Agenda extends Sequelize.Model {};
 
@@ -12,6 +13,13 @@ Agenda.init({
     primaryKey: true,
     unique: true,
     type: DataTypes.INTEGER
+  },
+  IdServicio: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Servicios,
+      key: 'IdServicio'
+    }
   },
   IdEmpleado: {
     type: DataTypes.INTEGER,
@@ -35,6 +43,10 @@ Agenda.init({
     allowNull: false,
     unique: true,
     type: DataTypes.TIME
+  },
+  Valor: {
+    allowNull: false,
+    type: DataTypes.INTEGER
   },
 },{
     sequelize: db,

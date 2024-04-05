@@ -27,11 +27,15 @@ DetalleProductosCompras.init({
       key: 'IdCompra'
     }
   },
-  CantidadCompra: {
+  CantidadDisponible: {
     allowNull: false,
     type: DataTypes.INTEGER
   },
-  Subtotal: {
+  ValorUnitario: {
+    allowNull: false,
+    type: DataTypes.INTEGER
+  },
+  TotalCompra: {
     allowNull: false,
     type: DataTypes.INTEGER
   },

@@ -36,10 +36,10 @@ const empleadosPut = async(req, res = response)=>{
 
         const find = await Empleados.findByPk(IdEmpleado);
         console.log(find);
-        find != null ? 
+        find != null ?
         await Empleados.update(
             {
-                PorcentajeGanancia: PorcentajeGanancias
+                PorcentajeGanancias: PorcentajeGanancias
             },
             {
                 where: {
@@ -63,7 +63,7 @@ const empleadosDelete = async(req, res)=> {
     let mensaje = 'Empleados eliminado exitosamente...'
 
     try{
-        const empleado = await Empleados.destroy({ where: { IdEmpleado: IdEmpleado } });
+        await Empleados.destroy({ where: { IdEmpleado: IdEmpleado } });
     }
     catch(error){
         mensaje = 'Se presentaron problemas al eliminar el Empleado...'+ req.params.IdEmpleado

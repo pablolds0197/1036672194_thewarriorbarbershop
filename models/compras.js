@@ -1,6 +1,7 @@
 const db = require('../config/config');
 const { Sequelize, DataTypes } = require('sequelize');
 const Proveedor = require('./proveedores');
+const Producto = require('./gestionproductos'); // Importa el modelo Producto
 
 
 class Compras extends Sequelize.Model {};
@@ -20,15 +21,27 @@ Compras.init({
       key: 'IdProvedores'
     }
   },
-  FechaCompra: {
-    allowNull: false,
-    type: DataTypes.DATE,
+  IdProducto: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Producto,
+      key: 'IdProducto'
+    }
   },
-  Total: {
+  NumeroFactura: {
     allowNull: false,
     type: DataTypes.INTEGER,
   },
-},{
+  FechaRegistro:{
+    allowNull: false,
+    type:DataTypes.DATE
+  },
+  SubTotal:{
+    allowNull:false,
+    type:DataTypes.INTEGER
+  },  
+},
+{
     sequelize: db,
     modelName: 'Compras',
     tableName: 'compras',
