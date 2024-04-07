@@ -21,8 +21,7 @@ Empleados.init({
   },
   PorcentajeGanancias: {
     allowNull: false,
-    type: DataTypes.INTEGER,
-    unique: true
+    type: DataTypes.INTEGER
   },
   
 },{
