@@ -1,8 +1,8 @@
 const db = require('../config/config');
 const { Sequelize, DataTypes } = require('sequelize');
 const Empleados = require('./empleados');
-const Clientes = require('./empleados');
-
+const Clientes = require('./clientes');
+const Servicios = require('./servicios');
 
 class Ventas extends Sequelize.Model {};
 
@@ -13,6 +13,18 @@ Ventas.init({
     primaryKey: true,
     unique: true,
     type: DataTypes.INTEGER
+  },
+  CodFactura: {
+    allowNull: false,
+    type: DataTypes.INTEGER,
+  },
+  IdServicio: {
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: Servcios,
+      key: 'IdServicio'
+    }
   },
   IdEmpleado: {
     type: DataTypes.INTEGER,
