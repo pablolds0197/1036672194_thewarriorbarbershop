@@ -22,7 +22,7 @@ Ventas.init({
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: Servcios,
+      model: Servicios,
       key: 'IdServicio'
     }
   },
