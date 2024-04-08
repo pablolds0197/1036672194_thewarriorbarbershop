@@ -7,7 +7,7 @@ const db = new Sequelize({
     username: 'lizcano',
     password: 'lizcano123',
     // password: 'admin', para el SENA
-    database: 'twbs',
+    database: 'TWBS',
     logging: false,
     define: {
         timestamps: true
