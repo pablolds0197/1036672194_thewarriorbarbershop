@@ -29,11 +29,9 @@ const empleadosPost = (req, res = response)=>{
 }
 
 const empleadosPut = async(req, res = response)=>{
-
     const {IdEmpleado, PorcentajeGanancias} = req.body
     let mensaje = 'Modificación exitosa'
     try{
-
         const find = await Empleados.findByPk(IdEmpleado);
         console.log(find);
         find != null ?

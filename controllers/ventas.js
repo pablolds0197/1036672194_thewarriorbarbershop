@@ -31,7 +31,7 @@ const ventasPost = (req, res = response)=>{
 
 const ventasPut = async(req, res = response)=>{
 
-    const {IdVenta, IdEmpleado, IdCliente, PrecioTotal } = req.body
+    const {IdVenta, CodFactura, IdServicio, IdEmpleado, IdCliente, PrecioTotal } = req.body
     let mensaje = 'Modificación exitosa'
     try{
 
@@ -41,6 +41,8 @@ const ventasPut = async(req, res = response)=>{
         await Ventas.update(
             {
                 IdEmpleado: IdEmpleado,
+                CodFactura: CodFactura,
+                IdServicio: IdServicio,
                 IdCliente: IdCliente,
                 PrecioTotal: PrecioTotal,
             },
