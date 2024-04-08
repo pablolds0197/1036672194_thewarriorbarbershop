@@ -15,7 +15,6 @@ Ventas.init({
     type: DataTypes.INTEGER
   },
   CodFactura: {
-    unique: true,
     allowNull: false,
     type: DataTypes.INTEGER,
   },
