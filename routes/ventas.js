@@ -1,6 +1,7 @@
 const { Router} = require('express');
 
 const { ventasGet,
+        IdVentasGet,
         ventasPut,
         ventasPost,
         ventasDelete } = require('../controllers/ventas');
@@ -8,6 +9,8 @@ const { ventasGet,
 const router = Router();
 
 router.get('/', ventasGet);
+
+router.get('/:IdVenta', IdVentasGet);
 
 router.put('/', ventasPut);
 

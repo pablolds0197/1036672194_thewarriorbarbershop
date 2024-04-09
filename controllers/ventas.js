@@ -14,6 +14,23 @@ const ventasGet = async (req, res) => {
     }
 };
 
+const IdVentasGet = async (req, res) => {
+    try {
+        const { IdVenta } = req.params;
+        const venta = await Ventas.findOne({
+            where: { IdVenta: IdVenta },
+        });
+        if (venta) {
+            res.json({ venta });
+        } else {
+            res.status(404).json({ error: "Venta no encontrada." });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error interno del servidor..." });
+    }
+};
+
 const ventasPost = (req, res = response)=>{
     let mensaje = 'Venta registrado extosamente...'
     const body = req.body
@@ -30,11 +47,9 @@ const ventasPost = (req, res = response)=>{
 }
 
 const ventasPut = async(req, res = response)=>{
-
     const {IdVenta, CodFactura, IdServicio, IdEmpleado, IdCliente, PrecioTotal } = req.body
     let mensaje = 'Modificación exitosa'
     try{
-
         const find = await Ventas.findByPk(IdVenta);
         console.log(find);
         find != null ? 
@@ -61,19 +76,15 @@ const ventasPut = async(req, res = response)=>{
     })
 }
 
-
-
 const ventasDelete = async(req, res)=> {
     const {IdVenta} = req.body
     let mensaje = 'venta eliminada exitosamente...'
-
     try{
         const ventas = await Ventas.destroy({ where: { IdVenta: IdVenta } });
     }
     catch(error){
         mensaje = 'Se presentaron problemas al eliminar la venta...'+ req.params.IdVenta
     }
-
     res.json({
         msg: mensaje
     })
@@ -81,6 +92,7 @@ const ventasDelete = async(req, res)=> {
 
 module.exports ={
     ventasGet,
+    IdVentasGet,
     ventasPut,
     ventasPost,
     ventasDelete

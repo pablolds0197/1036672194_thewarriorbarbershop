@@ -28,6 +28,7 @@ const NombreUsuarioGet = async (req, res) => {
     res.status(500).json({ error: "Error interno del servidor..." });
   }
 };
+
 const usuariosPost = async (req, res = response) => {
   let mensaje = "Usuario registrado extosamente...";
   const body = req.body;
