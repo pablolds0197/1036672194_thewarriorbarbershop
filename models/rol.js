@@ -18,8 +18,7 @@ Rol.init({
   },
   Estado: {
     allowNull: false,
-    type: DataTypes.ENUM('Activo', 'Inactivo'),
-    defaultValue: 'Activo'
+    type: DataTypes.BOOLEAN
   },
 },{
     sequelize: db,

@@ -17,10 +17,6 @@ const rolesGet = async (req, res) => {
 const rolesPost = async (req, res = response)=>{
     let mensaje = 'Rol registrado extosamente...'
     const body = req.body
-    // const existeRol = await Rol.findAll({ where: {NombreDelRol: body.NombreDelRol}});
-    // if (existeRol) {
-    //     mensaje = "Este nombre de rol ya existe...";
-    // } else {
         try {
             const roles = new Rol(body)
             roles.save()
@@ -28,7 +24,6 @@ const rolesPost = async (req, res = response)=>{
             mensaje = error
             console.log(error)
         }
-    // }
         res.json({
         msg: mensaje
     })
