@@ -5,7 +5,7 @@ const db = new Sequelize({
     // host: '34.134.5.40',
     username: 'root',
     // username: 'lizcano',
-    password: '',
+    password: 'admin',
     // password: 'lizcano123',
     // password: 'admin', para el SENA
     database: 'twbs',
