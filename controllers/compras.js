@@ -41,7 +41,6 @@ const comprasPost = async (req, res = response) => {
       res.status(500).json({ error: mensaje });
     }
   };
-  
 const comprasPut = async(req, res = response)=>{
 
     const {IdCompra, IdProveedor,IdProducto,NumeroFactura,FechaRegistro,SubTotal } = req.body
