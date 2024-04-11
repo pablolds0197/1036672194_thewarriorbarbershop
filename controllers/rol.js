@@ -2,7 +2,7 @@
 const Rol = require('../models/rol');
 
 
-const { response , request} = require('express');
+const { response, request } = require('express');
 
 const rolesGet = async (req, res) => {
     try {
@@ -14,42 +14,60 @@ const rolesGet = async (req, res) => {
     }
 };
 
-const rolesPost = async (req, res = response)=>{
+const rolesGetById = async (req, res) => {
+    try {
+      const { IdRol } = req.params;
+      const rol = await Rol.findOne({
+        where: { IdRol: IdRol },
+      });
+      if (rol) {
+        res.json({ rol });
+      } else {
+        res.status(404).json({ error: "Usuario no encontrado" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Error interno del servidor..." });
+    }
+  };
+
+const rolesPost = async (req, res = response) => {
     let mensaje = 'Rol registrado extosamente...'
     const body = req.body
-        try {
-            const roles = new Rol(body)
-            roles.save()
-        } catch (error) {
-            mensaje = error
-            console.log(error)
-        }
-        res.json({
+    try {
+        const roles = new Rol(body)
+        roles.save()
+    } catch (error) {
+        mensaje = error
+        console.log(error)
+    }
+    res.json({
         msg: mensaje
     })
 }
 
-const rolesPut = async(req, res = response)=>{
+const rolesPut = async (req, res = response) => {
 
-    const {IdRol, NombreDelRol,  Estado } = req.body
+    const { IdRol, NombreDelRol, Estado } = req.body
     let mensaje = 'Modificación exitosa'
-    try{
+    try {
 
         const find = await Rol.findByPk(IdRol);
-        find != null ? 
-        await Rol.update(
-            {
-                NombreDelRol: NombreDelRol,
-                Estado: Estado,
-            },
-            {
-                where: {
-                    IdRol: IdRol
+        console.log(find);
+        find != null ?
+            await Rol.update(
+                {
+                    NombreDelRol: NombreDelRol,
+                    Estado: Estado,
+                },
+                {
+                    where: {
+                        IdRol: IdRol
+                    }
                 }
-            }
-        ) : mensaje = 'No existe el rol para ser modificado...'
+            ) : mensaje = 'No existe el rol para ser modificado...'
     }
-    catch(error){
+    catch (error) {
         mensaje = 'Se presentaron problemas al modificar el rol...'
     }
     res.json({
@@ -59,15 +77,15 @@ const rolesPut = async(req, res = response)=>{
 
 
 
-const rolesDelete = async(req, res)=> {
-    const {IdRol} = req.body
+const rolesDelete = async (req, res) => {
+    const { IdRol } = req.body
     let mensaje = 'Rol eliminado exitosamente...'
 
-    try{
+    try {
         const rol = await Rol.destroy({ where: { IdRol: IdRol } });
     }
-    catch(error){
-        mensaje = 'Se presentaron problemas al eliminar el rol...'+ req.params.IdRol
+    catch (error) {
+        mensaje = 'Se presentaron problemas al eliminar el rol...' + req.params.IdRol
     }
 
     res.json({
@@ -75,8 +93,9 @@ const rolesDelete = async(req, res)=> {
     })
 }
 
-module.exports ={
+module.exports = {
     rolesGet,
+    rolesGetById,
     rolesPut,
     rolesPost,
     rolesDelete
