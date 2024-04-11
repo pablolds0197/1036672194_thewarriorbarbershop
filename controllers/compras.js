@@ -1,8 +1,5 @@
-
-
 const Compras = require('../models/compras');
-
-
+const DetalleProductosCompras = require('../models/detalleProductosCompras');
 const { response , request} = require('express');
 
 const comprasGet = async (req, res) => {
@@ -15,21 +12,36 @@ const comprasGet = async (req, res) => {
     }
 };
 
-const comprasPost = (req, res = response)=>{
-    let mensaje = 'Compra registrada extosamente...'
-    const body = req.body
+const comprasPost = async (req, res = response) => {
+    let mensaje = 'Compra registrada exitosamente...';
     try {
-        const compras = new Compras(body) 
-        compras.save()
+      const nuevaCompra = await Compras.create(req.body);
+      if (nuevaCompra) {
+        const detalles = req.body.detalles;
+        if (detalles && detalles.length > 0) {
+          // Crear detalles de productos de compra para cada detalle recibido
+          for (const detalle of detalles) {
+            await DetalleProductosCompras.create({
+              IdCompra: nuevaCompra.IdCompra,
+              IdProducto: detalle.IdProducto,
+              NumeroFactura: nuevaCompra.NumeroFactura,
+              FechaRegistro: nuevaCompra.FechaRegistro,
+              TotalCompra: detalle.TotalCompra,
+            });
+          }
+        }
+        res.json({ compra: nuevaCompra, detalles, msg: mensaje });
+      } else {
+        mensaje = 'Error al registrar la compra';
+        res.json({ msg: mensaje });
+      }
     } catch (error) {
-        mensaje = error
-        console.log(error)
+      mensaje = error.message;
+      console.error(error);
+      res.status(500).json({ error: mensaje });
     }
-        res.json({
-        msg: mensaje
-    })
-}
-
+  };
+  
 const comprasPut = async(req, res = response)=>{
 
     const {IdCompra, IdProveedor,IdProducto,NumeroFactura,FechaRegistro,SubTotal } = req.body

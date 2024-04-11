@@ -11,7 +11,7 @@ Gestionproducto.init({
     unique: true,
     type: DataTypes.INTEGER
   },
-  NombreProducto: {
+  NombreDelInsumo: {
     allowNull: false,
     type: DataTypes.STRING,
     unique: true
@@ -29,8 +29,8 @@ Gestionproducto.init({
     type: DataTypes.INTEGER
   },
   CantidadDisponible: {
-    allowNull: false,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   PrecioUnitario: {
     allowNull: false,

@@ -1,8 +1,6 @@
-
+const { response } = require('express');
 const DetalleProductosCompras = require('../models/detalleProductosCompras');
-
-
-const { response , request} = require('express');
+const Compras = require('../models/compras'); // Importa el modelo de Compra
 
 const detalleProductosComprasGet = async (req, res) => {
     try {
@@ -14,24 +12,40 @@ const detalleProductosComprasGet = async (req, res) => {
     }
 };
 
-const detalleProductosComprasPost = (req, res = response)=>{
-    let mensaje = 'El detalle de producto compras fué registrado extosamente...'
-    const body = req.body
+const detalleProductosComprasPost = async (req, res = response) => {
+    let mensaje = 'El detalle de producto compras fue registrado exitosamente';
+    const { compra, detalles } = req.body;
     try {
-        const detalleProductosCompras = new DetalleProductosCompras(body) 
-        detalleProductosCompras.save()
+      // Verificamos si existe la compra correspondiente
+      const existingCompra = await Compras.findByPk(compra.IdCompra);
+      if (!existingCompra) {
+        throw new Error('No se encontró la compra correspondiente');
+      }
+  
+      // Crear detalles de productos de compra para cada detalle recibido
+      for (const detalle of detalles) {
+        await DetalleProductosCompras.create({
+          IdCompra: compra.IdCompra,
+          IdProducto: detalle.IdProducto,
+          NumeroFactura: compra.NumeroFactura,
+          FechaRegistro: compra.FechaRegistro,
+          TotalCompra: detalle.TotalCompra,
+        });
+      }
     } catch (error) {
-        mensaje = error
-        console.log(error)
+      mensaje = error.message;
+      console.error(error);
     }
-        res.json({
-        msg: mensaje
-    })
+    res.json({ msg: mensaje });
+  };
+
+module.exports = {
+    detalleProductosComprasPost
 }
 
 const detalleProductosComprasPut = async(req, res = response)=>{
 
-    const {IdDetalleProductosCompras, IdProducto,  IdCompra, CantidadDisponible, Total } = req.body
+    const {IdDetalleProductosCompras, IdProducto,  IdCompra,FechaRegistro, TotalCompra } = req.body
     let mensaje = 'Modificación exitosa...'
     try{
         const find = await DetalleProductosCompras.findByPk(IdDetalleProductosCompras);
@@ -41,8 +55,8 @@ const detalleProductosComprasPut = async(req, res = response)=>{
             {
                 IdProducto: IdProducto,
                 IdCompra: IdCompra,
-                CantidadDisponible: CantidadDisponible,
-                Total: Total
+                FechaRegistro:FechaRegistro,
+                TotalCompra: TotalCompra,
             },
             {
                 where: {

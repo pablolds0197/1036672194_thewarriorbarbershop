@@ -1,16 +1,16 @@
 const { Router} = require('express');
 
 const { ventasGet,
-        IdVentasGet,
         ventasPut,
         ventasPost,
-        ventasDelete } = require('../controllers/ventas');
+        ventasDelete, 
+        CodFacturaoGet} = require('../controllers/ventas');
 
 const router = Router();
 
 router.get('/', ventasGet);
 
-router.get('/:IdVenta', IdVentasGet);
+router.get("/:CodFactura", CodFacturaoGet);
 
 router.put('/', ventasPut);
 

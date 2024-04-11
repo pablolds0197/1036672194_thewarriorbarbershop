@@ -32,7 +32,7 @@ const gestionproductosPost = (req, res = response)=>{
 const gestionproductosPut = async(req, res = response)=>{
 
     const {IdProducto,
-        NombreProducto,
+        NombreDelInsumo,
         Descripcion,
         StockMax,
         StockMin ,
@@ -47,7 +47,7 @@ const gestionproductosPut = async(req, res = response)=>{
         await Gestionproductos.update(
             {
                 IdProducto:IdProducto,
-                NombreProducto: NombreProducto,
+                NombreDelInsumo: NombreDelInsumo,
                 Descripcion:Descripcion,
                 StockMax :StockMax,
                 StockMin: StockMin,
