@@ -25,6 +25,7 @@ class Server {
         this.detalleAgendaServicioPath = '/api/detalleAgendaServicio';
         this.comprasPath = '/api/compras';
         this.detalleProductosComprasPath = '/api/detalleProductosCompras';
+        this.authPath = '/api/auth';
 
         //Midelewars
         this.middlewares();
@@ -42,6 +43,7 @@ class Server {
         this.app.use(bodyParser.urlencoded({ extended: false}));
     }
     routes(){
+        this.app.use(this.authPath, require('../routes/auth'));
         this.app.use(this.serviciosPath, require('../routes/servicios'));
         this.app.use(this.rolesPath, require('../routes/roles'));
         this.app.use(this.permisosPath, require('../routes/permisos'));

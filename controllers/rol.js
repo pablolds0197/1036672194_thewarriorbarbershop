@@ -36,7 +36,6 @@ const rolesPut = async(req, res = response)=>{
     try{
 
         const find = await Rol.findByPk(IdRol);
-        console.log(find);
         find != null ? 
         await Rol.update(
             {
