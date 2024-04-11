@@ -18,5 +18,4 @@ const db = new Sequelize({
         connectTimeout: 300000,
     },
 });
-
 module.exports = db;

@@ -21,7 +21,7 @@ const NombreUsuarioGet = async (req, res) => {
     if (usuario) {
       res.json({ usuario });
     } else {
-      res.status(404).json({ error: "Usuario no encontrado" });
+      res.status(404).json({ error: "Usuario no encontrado..." });
     }
   } catch (error) {
     console.error(error);
