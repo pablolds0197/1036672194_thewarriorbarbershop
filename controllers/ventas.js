@@ -14,22 +14,22 @@ const ventasGet = async (req, res) => {
     }
 };
 
-const IdVentasGet = async (req, res) => {
+const CodFacturaoGet = async (req, res) => {
     try {
-        const { IdVenta } = req.params;
-        const venta = await Ventas.findOne({
-            where: { IdVenta: IdVenta },
-        });
-        if (venta) {
-            res.json({ venta });
-        } else {
-            res.status(404).json({ error: "Venta no encontrada." });
-        }
+      const { CodFactura } = req.params;
+      const codfactura = await Ventas.findOne({
+        where: { CodFactura: CodFactura },
+      });
+      if (codfactura) {
+        res.json({ codfactura });
+      } else {
+        res.status(404).json({ error: "Usuario no encontrado" });
+      }
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Error interno del servidor..." });
+      console.error(error);
+      res.status(500).json({ error: "Error interno del servidor..." });
     }
-};
+  };
 
 const ventasPost = (req, res = response)=>{
     let mensaje = 'Venta registrado extosamente...'
@@ -92,8 +92,8 @@ const ventasDelete = async(req, res)=> {
 
 module.exports ={
     ventasGet,
-    IdVentasGet,
     ventasPut,
     ventasPost,
-    ventasDelete
+    ventasDelete,
+    CodFacturaoGet
 }
