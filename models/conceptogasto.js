@@ -20,6 +20,7 @@ ConceptoGasto.init(
     Descripcion: {
       allowNull: false,
       type: DataTypes.STRING,
+      default: "Sin descripción.",
     },
     ValorDelGasto: {
       allowNull: false,

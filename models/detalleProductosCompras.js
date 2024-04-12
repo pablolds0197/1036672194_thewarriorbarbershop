@@ -27,13 +27,13 @@ DetalleProductosCompras.init({
       key: 'IdCompra'
     }
   },
-  CantidadDisponible: {
+  NumeroFactura: {
     allowNull: false,
     type: DataTypes.INTEGER
   },
-  ValorUnitario: {
+  FechaRegistro: {
     allowNull: false,
-    type: DataTypes.INTEGER
+    type: DataTypes.DATE
   },
   TotalCompra: {
     allowNull: false,

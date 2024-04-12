@@ -1,6 +1,4 @@
-
 const Ventas = require('../models/ventas');
-
 
 const { response , request} = require('express');
 

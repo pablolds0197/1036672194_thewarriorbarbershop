@@ -18,7 +18,8 @@ Gestionproducto.init({
   },
   Descripcion: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    default: "Sin descripción."
   },
   StockMax: {
     allowNull: false,

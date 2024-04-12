@@ -29,8 +29,7 @@ DetalleAgendaServicio.init({
   },
   EstadoDeServicio: {
     allowNull: false,
-    type: DataTypes.ENUM('Activo', 'Inactivo'),
-    defaultValue: 'Activo'
+    type: DataTypes.BOOLEAN
   },
 },{
     sequelize: db,

@@ -140,7 +140,9 @@ const usuariosPut = async (req, res = response) => {
   const valEm = /^[a-zA-Z0-9]+@[a-zA-Z]{4,8}\.[a-zA-Z]{2,4}$/;
   const valPa = /^[a-zA-Z0-9]{8,15}$/;
   const valCel = /^[0-9]{10}$/;
-  const existeUsuario = await Usuarios.findOne({ where: { IdUsuario: IdUsuario } });
+  const existeUsuario = await Usuarios.findOne({
+    where: { IdUsuario: IdUsuario },
+  });
 
   if (
     !IdRol &&

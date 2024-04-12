@@ -18,11 +18,8 @@ Servicios.init({
   },
   Descripcion: {
     allowNull: false,
-    type: DataTypes.STRING
-  },
-  Comision: {
-    allowNull: false,
-    type: DataTypes.INTEGER
+    type: DataTypes.STRING,
+    default: "Sin descripción."
   },
   Precio: {
     allowNull: false,
