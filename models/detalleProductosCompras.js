@@ -2,7 +2,6 @@ const db = require('../config/config');
 const { Sequelize, DataTypes } = require('sequelize'); 
 const Producto = require('./gestionproductos');
 const Compra = require('./compras');
-
 class DetalleProductosCompras extends Sequelize.Model {};
 
 DetalleProductosCompras.init({

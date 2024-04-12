@@ -30,8 +30,8 @@ Gestionproducto.init({
     type: DataTypes.INTEGER
   },
   CantidadDisponible: {
-    allowNull: false,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   PrecioUnitario: {
     allowNull: false,
