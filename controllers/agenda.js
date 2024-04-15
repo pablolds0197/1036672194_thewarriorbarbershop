@@ -59,6 +59,7 @@ const agendaPut = async (req, res = response) => {
     IdEmpleado,
     IdServicio,
     IdCliente,
+    Estado,
     FechaAgenda,
     HoraAgenda,
     Valor,
@@ -92,23 +93,33 @@ const agendaPut = async (req, res = response) => {
   } else {
     try {
       const find = await Agenda.findByPk(IdAgenda);
-      find != null
-        ? await Agenda.update(
-            {
-              IdServicio: IdServicio,
-              IdEmpleado: IdEmpleado,
-              IdCliente: IdCliente,
-              FechaAgenda: FechaAgenda,
-              HoraAgenda: HoraAgenda,
-              Valor: Valor,
+      if (find != null) {
+        // Actualizar la agenda
+        await Agenda.update(
+          {
+            IdServicio: IdServicio,
+            IdEmpleado: IdEmpleado,
+            IdCliente: IdCliente,
+            Estado: Estado,
+            FechaAgenda: FechaAgenda,
+            HoraAgenda: HoraAgenda,
+            Valor: Valor,
+          },
+          {
+            where: {
+              IdAgenda: IdAgenda,
             },
-            {
-              where: {
-                IdAgenda: IdAgenda,
-              },
-            }
-          )
-        : (mensaje = "No existe la agenda para ser modificada...");
+          }
+        );
+        if (Estado) {
+          setTimeout(() => {
+            Agenda.update({ Estado: false }, { where: { IdAgenda: IdAgenda } });
+            console.log("Estado cambiado a terminado...");
+          }, 60000);
+        }
+      } else {
+        mensaje = "No existe la agenda para ser modificada...";
+      }
     } catch (error) {
       mensaje = "Se presentaron problemas al modificar la agenda...";
     }

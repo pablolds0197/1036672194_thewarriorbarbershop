@@ -4,7 +4,7 @@ const { response, request } = require("express");
 
 const usuariosGet = async (req, res) => {
   try {
-    const usuarios = await Usuarios.findAll();
+    const usuarios = await Usuarios.findAll(/*{ where: { Estado: true }}*/);
     res.json({ usuarios });
   } catch (error) {
     console.error(error);
