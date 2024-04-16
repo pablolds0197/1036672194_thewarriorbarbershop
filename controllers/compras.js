@@ -35,6 +35,10 @@ const comprasPost = async (req, res = response) => {
       mensaje = "Error al registrar la compra";
       res.json({ msg: mensaje });
     }
+  } catch (error) {
+    mensaje = "Se presentaron problemas al crear la compra...";
+  }
+}
 
 const comprasPut = async (req, res = response) => {
   const {
@@ -51,19 +55,19 @@ const comprasPut = async (req, res = response) => {
     console.log(find);
     find != null
       ? await Compras.update(
-          {
-            IdProveedor: IdProveedor,
-            IdProducto: IdProducto,
-            NumeroFactura: NumeroFactura,
-            FechaRegistro: FechaRegistro,
-            SubTotal: SubTotal,
+        {
+          IdProveedor: IdProveedor,
+          IdProducto: IdProducto,
+          NumeroFactura: NumeroFactura,
+          FechaRegistro: FechaRegistro,
+          SubTotal: SubTotal,
+        },
+        {
+          where: {
+            IdCompra: IdCompra,
           },
-          {
-            where: {
-              IdCompra: IdCompra,
-            },
-          }
-        )
+        }
+      )
       : (mensaje = "No existe la compra para ser modificada...");
   } catch (error) {
     mensaje = "Se presentaron problemas al modificar la compra...";
