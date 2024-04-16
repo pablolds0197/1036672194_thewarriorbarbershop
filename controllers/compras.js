@@ -35,12 +35,6 @@ const comprasPost = async (req, res = response) => {
       mensaje = "Error al registrar la compra";
       res.json({ msg: mensaje });
     }
-  } catch (error) {
-    mensaje = error.message;
-    console.error(error);
-    res.status(500).json({ error: mensaje });
-  }
-};
 
 const comprasPut = async (req, res = response) => {
   const {
