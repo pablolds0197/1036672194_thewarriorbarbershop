@@ -24,6 +24,10 @@ Usuarios.init({
     type: DataTypes.STRING,
     unique: true
   },
+  Estado: {
+    allowNull: false,
+    type: DataTypes.BOOLEAN
+  },
   Nombre: {
     allowNull: false,
     type: DataTypes.STRING

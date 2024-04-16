@@ -30,6 +30,10 @@ DetalleProductosCompras.init({
     allowNull: false,
     type: DataTypes.INTEGER
   },
+  FechaRegistro: {
+    allowNull: false,
+    type: DataTypes.DATE
+  },
   TotalCompra: {
     allowNull: false,
     type: DataTypes.INTEGER

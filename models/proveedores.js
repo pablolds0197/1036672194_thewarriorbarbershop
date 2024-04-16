@@ -12,7 +12,6 @@ Proveedores.init({
     unique: true,
     type: DataTypes.INTEGER
   },
-  
   NombreProveedor: {
     allowNull: false,
     type: DataTypes.STRING,
@@ -30,7 +29,6 @@ Proveedores.init({
     allowNull: false,
     type: DataTypes.STRING
   }
-  
 },{
     sequelize: db,
     modelName: 'Proveedores',
